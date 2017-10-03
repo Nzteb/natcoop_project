@@ -1,0 +1,73 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribution
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <td>You are: {{ player.label }}</td>
+            <td>Current round: Round {{ player.round_number }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+    <br>
+    You contributed <b>{{ player.cont_first }}</b>.
+    <br>
+    In total, the sum of all contributions is  <b>{{ group.total_cont_first }}</b>
+    <br>
+    Therefore, each player receives <b>{{ group.indiv_share_first }}</b> from the project.
+    <br><br>
+    The following table displays the contributions of all players
+     <table class="table">
+        <tr>
+            <th>Player</th>
+            <th>Contribution</th>
+        </tr>
+        <tr>
+            <td>Player A</td>
+            <td>{{ PlayerA }}</td>
+        </tr>
+        <tr>
+            <td>Player B</td>
+            <td>{{ PlayerB }}</td>
+        </tr>
+        <tr>
+            <td>Player C</td>
+            <td>{{ PlayerC }}</td>
+        </tr>
+        <tr>
+            <td>Player D</td>
+            <td>{{ PlayerD }}</td>
+        </tr>
+        <tr>
+            <td>Player E</td>
+            <td>{{ PlayerE }}</td>
+        </tr>
+    </table>
+    <br>
+
+
+
+
+
+
+
+    {% next_button %}
+{% endblock %}
+
+
+{% block scripts %}
+    <style type="text/css">
+        .otree-title{ display:none }
+        .otree-body{margin-top: -100px}
+    </style>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribution
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <td>You are: {{ player.label }}</td>
+            <td>Current round: Round {{ player.round_number }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+
+    {% if player.treatment == 'inclusion' %}
+
+        Which players do you want to play the second game of this round?
+        <br>
+        You have to invite 3 or 4 players.
+        <br><br>
+
+        Players who shall play the next round:
+        {% if player.label != 'Player A' %}{% formfield player.invite_A %}{% endif %}
+        {% if player.label != 'Player B' %}{% formfield player.invite_B %}{% endif %}
+        {% if player.label != 'Player C' %}{% formfield player.invite_C %}{% endif %}
+        {% if player.label != 'Player D' %}{% formfield player.invite_D %}{% endif %}
+        {% if player.label != 'Player E' %}{% formfield player.invite_E %}{% endif %}
+
+    {% elif player.treatment == 'exclusion' %}
+
+        Which players do you want to play the second game of this round?
+        <br>
+        If you want to, you can exclude one player by unchecking the box.
+        <br><br>
+
+         Players who shall play the next round:
+        {% if player.label != 'Player A' %}{% formfield player.exclude_A %}{% endif %}
+        {% if player.label != 'Player B' %}{% formfield player.exclude_B %}{% endif %}
+        {% if player.label != 'Player C' %}{% formfield player.exclude_C %}{% endif %}
+        {% if player.label != 'Player D' %}{% formfield player.exclude_D %}{% endif %}
+        {% if player.label != 'Player E' %}{% formfield player.exclude_E %}{% endif %}
+
+    {% endif %}
+
+
+    {% next_button %}
+{% endblock %}
+
+
+{% block scripts %}
+    <style type="text/css">
+        .otree-title{ display:none }
+        .otree-body{margin-top: -100px}
+    </style>
+{% endblock %}

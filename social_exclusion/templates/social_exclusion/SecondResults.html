@@ -1,0 +1,94 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribution
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <td>You are: {{ player.label }}</td>
+            <td>Current round: Round {{ player.round_number }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+    <br>
+    {% if player.plays_secondpg == True %}
+        You contributed <b>{{ player.cont_second }}</b>.
+        <br>
+        In total, the sum of all contributions is  <b>{{ group.total_cont_second }}</b>
+        <br>
+        Therefore, each player receives <b>{{ group.indiv_share_second }}</b> from the project.
+        <br><br>
+    {% else %}
+        The second game is finished.
+    {% endif %}
+
+
+    The following table displays the contributions of all players
+     <table class="table">
+        <tr>
+            <th>Player</th>
+            <th>Contribution</th>
+        </tr>
+        {% if group.excluded_player != 'Player A' %}
+            <tr>
+                <td>Player A</td>
+                <td>{{ PlayerA }}</td>
+            </tr>
+        {% endif %}
+
+        {% if group.excluded_player != 'Player B' %}
+            <tr>
+                <td>Player B</td>
+                <td>{{ PlayerB }}</td>
+            </tr>
+        {% endif %}
+
+        {% if group.excluded_player != 'Player C' %}
+            <tr>
+                <td>Player C</td>
+                <td>{{ PlayerC }}</td>
+            </tr>
+        {% endif %}
+
+         {% if group.excluded_player != 'Player D' %}
+            <tr>
+                <td>Player D</td>
+                <td>{{ PlayerD }}</td>
+            </tr>
+        {% endif %}
+
+        {% if group.excluded_player != 'Player E' %}
+            <tr>
+                <td>Player E</td>
+                <td>{{ PlayerE }}</td>
+            </tr>
+        {% endif %}
+
+    </table>
+    <br>
+
+
+
+
+
+
+
+    {% next_button %}
+{% endblock %}
+
+
+{% block scripts %}
+    <style type="text/css">
+        .otree-title{ display:none }
+        .otree-body{margin-top: -100px}
+    </style>
+{% endblock %}

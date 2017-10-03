@@ -1,0 +1,30 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribution
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <td>You are: {{ player.label }}</td>
+            <td>Current round: Round {{ player.round_number }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+    {% next_button %}
+{% endblock %}
+
+
+{% block scripts %}
+    <style type="text/css">
+        .otree-title{ display:none }
+        .otree-body{margin-top: -100px}
+    </style>
+{% endblock %}

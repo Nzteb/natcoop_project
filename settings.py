@@ -100,12 +100,22 @@ SESSION_CONFIG_DEFAULTS = {
 
 
 SESSION_CONFIGS = [
-    # {
-    #     'name': '...',
-    #     'display_name': '...',
-    #     'num_demo_participants': ...,
-    #     'app_sequence': ['...'],
-    # }
+    {
+        'name': 'socialexclusion',
+        'display_name': 'social_inclusion_treatment',
+        'num_demo_participants': 5,
+        'app_sequence': ['social_exclusion'],
+        'treatment': 'inclusion'
+    },
+    {
+        'name': 'socialinclusion',
+        'display_name': 'social_exclusion_treatment',
+        'num_demo_participants': 5,
+        'app_sequence': ['social_exclusion'],
+        'treatment': 'exclusion'
+    }
+
+
 ]
 
 # anything you put after the below line will override

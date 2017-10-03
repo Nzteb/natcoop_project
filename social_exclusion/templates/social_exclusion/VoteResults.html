@@ -1,0 +1,94 @@
+{% extends "global/Page.html" %}
+{% load staticfiles otree_tags %}
+
+{% block title %}
+    Contribution
+{% endblock %}
+
+{% block content %}
+    <table class="table">
+        <tr>
+            <td>You are: {{ player.label }}</td>
+            <td>Current round: Round {{ player.round_number }}</td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+
+
+
+    {% if player.treatment == 'inclusion' %}
+
+        <br>
+        You have been invited  <b>{{ player.myvotes_inclusion }}</b> times.
+        <br>
+        {% if player.plays_secondpg == True %}
+            Therefore, you are allowed to play the second game.
+        {% else %}
+            The result of the voting says you are not allowed to play the second game.
+        {% endif %}
+        <br><br><br>
+        The following table displays the voting results
+        <table class="table">
+            <tr>
+                <th>Player</th>
+                <th>Invitations</th>
+                <th>Plays the second game</th>
+            </tr>
+            <tr>
+                <td>Player A</td>
+                <td>{{ PlayerA_votes }}</td>
+                <td>{{ PlayerA_plays }}</td>
+            </tr>
+            <tr>
+                <td>Player B</td>
+                <td>{{ PlayerB_votes }}</td>
+                <td>{{ PlayerB_plays }}</td>
+            </tr>
+            <tr>
+                <td>Player C</td>
+                <td>{{ PlayerC_votes }}</td>
+                <td>{{ PlayerC_plays }}</td>
+            </tr>
+            <tr>
+                <td>Player D</td>
+                <td>{{ PlayerD_votes }}</td>
+                <td>{{ PlayerD_plays }}</td>
+            </tr>
+            <tr>
+                <td>Player E</td>
+                <td>{{ PlayerE_votes }}</td>
+                <td>{{ PlayerE_plays }}</td>
+            </tr>
+        </table>
+        <br>
+
+        {% if group.all_play == 'True' %}
+            No single player has the least invitations. All players will play the second game.
+        {% else %}
+            <b>{{ group.excluded_player }}</b> has the least invitations. She will not play the second game.
+        {% endif %}
+
+
+
+    {% else %}
+    {% endif %}
+
+
+
+
+
+
+     <br><br>
+    {% next_button %}
+{% endblock %}
+
+
+{% block scripts %}
+    <style type="text/css">
+        .otree-title{ display:none }
+        .otree-body{margin-top: -100px}
+    </style>
+{% endblock %}
