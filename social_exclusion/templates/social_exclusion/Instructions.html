@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Contribution
+    Instructions
 {% endblock %}
 
 {% block content %}
@@ -17,7 +17,18 @@
         </tr>
     </table>
 
-
+    {% if player.round_number == 1 %}
+        {% if player.treatment == 'inclusion' %}
+            This are the instructions for the inclusion treatment. (Displayed in round1)
+        {% else %}
+            This are the instructions for the exclusion treatment. (Displayed in round1)
+        {% endif %}
+    {% else %}
+        Round {{ player.round_number }} starts now. On the next page you will determine your contribution for the first game. All players will play this game.
+        <br>
+        (This is displayed if the round number is > 1)
+    {% endif %}
+    <br> <br>
     {% next_button %}
 {% endblock %}
 

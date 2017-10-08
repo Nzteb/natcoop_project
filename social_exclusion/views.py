@@ -6,26 +6,17 @@ from .models import Constants
 
 
 class Instructions(Page):
-
-    def is_displayed(self):
-        return False
-
+    pass
 
 class FirstContribution(Page):
     form_model = models.Player
     form_fields = ['cont_first']
-
-    def is_displayed(self):
-        return False
 
 
 
 class FirstWaitPage(WaitPage):
     def after_all_players_arrive(self):
         self.group.set_payoffs_first()
-
-    def is_displayed(self):
-        return False
 
 
 
@@ -40,9 +31,6 @@ class FirstResults(Page):
             data[(player.label).replace(' ','')] = player.cont_first
         return data
 
-    def is_displayed(self):
-        return False
-
 
 
 class Vote(Page):
@@ -50,7 +38,7 @@ class Vote(Page):
     form_fields = ['invite_A', 'invite_B','invite_C','invite_D','invite_E','exclude_A','exclude_B', 'exclude_C', 'exclude_D', 'exclude_E']
     #TODO: In general you should really deeply think about these error messages
     #TODO: they work for now, but caution is needed, if e. g. you would change default settings of the Booleans
-    #TODO: should be implemented in tests detailed to ensure nor surprises happen in further steps of developing
+    #TODO: should be implemented in tests detailed to ensure no surprises occur in further steps of developing
     def error_message(self, values):
         if self.player.treatment == 'inclusion':
             vote_count = 0
@@ -59,7 +47,7 @@ class Vote(Page):
             #even if it would be true per default nothing would happen
             for vote in [values['invite_A'],values['invite_B'],values['invite_C'],values['invite_D'],values['invite_E']]:
                 if vote == True:
-                    vote_count +=1
+                    vote_count += 1
             if vote_count<3:
                 return 'Please choose to invite 3 or 4 players.'
         elif self.player.treatment=='exclusion':
@@ -68,39 +56,39 @@ class Vote(Page):
             #so vote == True if the player did not deselect the respective choice. Also vote == False here for the players own exclude variables
             for vote in [values['exclude_A'],values['exclude_B'],values['exclude_C'],values['exclude_D'],values['exclude_E']]:
                 if vote == True:
-                    vote_count+=1
+                    vote_count += 1
             if vote_count<3:
-                return 'Please only exclude 1 player'
-
-
+                return 'Please only exclude one player'
 
 
 class VoteWaitPage(WaitPage):
     def after_all_players_arrive(self):
-        if self.session.config['treatment'] == 'inclusion':
-            #count the votes for every player
-            self.group.set_myvotes_inclusion()
-            #assin for each player if he plays the second pg game
-            self.group.set_players_inclusion()
-            #assign the excluded player on a group variable, if there is one
-            self.group.set_excluded_player()
-        elif self.session.config['treatment'] == 'exclusion':
-            #invert the exclusion variable for better logic
-            self.group.invert_exclucions()
-            print('Ive been here')
-            pass
+        #invert exclusion variable in exclusion treatment
+        if self.session.config['treatment'] == 'exclusion':
+            self.group.invert_exclusions()
+        #count the votes (exclusions or invitations) for every player
+        self.group.set_myvotes()
+        #assign for each player if he plays the second pg game
+        self.group.set_second_game()
+        #assign the excluded player, if there is one, on a group variable
+        self.group.set_excluded_player()
 
 
 class VoteResults(Page):
    def vars_for_template(self):
+       treatment = self.group.get_players()[0].treatment
        data = {}
        # TODO: you wouldnt need the dic assignment because getplayers is ordered
        # TODO: But I find this safer
        # TODO: Note Vars for template cannot be tested, therefore this has to be safe and doublechecked
        for player in self.group.get_players():
-           #remove whitespace from label so that it can be displayed in the template
-           data[(player.label).replace(' ', '')+ '_votes'] = player.myvotes_inclusion
+           if treatment == 'inclusion':
+               data[(player.label).replace(' ', '') + '_votes'] = player.myvotes_inclusion
+           elif treatment == 'exclusion':
+               data[(player.label).replace(' ', '') + '_votes'] = player.myvotes_exclusion
+
            data[(player.label).replace(' ', '') + '_plays'] = player.plays_secondpg
+
        return data
 
 
@@ -128,11 +116,13 @@ class SecondResults(Page):
         return data
 
 
-
-
 class LastPage(Page):
-    def is_displayed(self):
-        return False
+  def is_displayed(self):
+      if self.player.round_number == Constants.num_rounds:
+          return True
+      else:
+          return False
+
 
 
 

@@ -2,7 +2,7 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Contribution
+    Second Contribution
 {% endblock %}
 
 {% block content %}
@@ -27,10 +27,10 @@
         {% if group.all_play == 'True' %}
             All five players play the second game.
         {% else %}
-            As <b>{{ group.excluded_player }}</b> was not invited, there are four players in the second game.
+            As <b>{{ group.excluded_player }}</b> was not included, there are four players in the second game.
             <br>
         {% endif %}
-        <br>
+        <br><br>
         {% formfield player.cont_second %}
 
     {% else %}
