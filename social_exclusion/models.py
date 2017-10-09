@@ -77,6 +77,9 @@ class Group(BaseGroup):
         for p in self.get_players():
             p.payoff = (Constants.endowment - p.cont_first) + self.indiv_share_first
 
+    #TODO: by setting up designs and just clicking through the experiment i suddenly got an error here
+    #TODO: I have no clue yet why.. and this was after i tested it 100 times with even various people?
+    #TODO: this was on 09.10.2017
     def set_payoffs_second(self):
         self.total_cont_second = sum([p.cont_second for p in self.get_players() if p.plays_secondpg == True])
         if self.all_play == 'False':

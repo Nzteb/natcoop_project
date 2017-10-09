@@ -6,32 +6,38 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table">
-        <tr>
-            <td>You are: {{ player.label }}</td>
-            <td>Current round: Round {{ player.round_number }}</td>
-        </tr>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </table>
+    <div style=" border: solid; border-color: #f6f6f6; padding-left: 0px; width: 65%">
+         <table class="table" style="font-size: 12px">
+                <tr>
+                    <td>You are <b>{{ player.label }}</b></td>
+                    <td>Current round is <b>Round {{ player.round_number }}</b></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                </tr>
+         </table>
 
 
+        <div style=" margin-left: 15px" >
 
-     <br>
-    {% formfield player.cont_first %}
+            <br>
+            {% formfield player.cont_first %}
+        </div>
 
 
-
-
+    <br>
+    </div>
+    <br>
     {% next_button %}
 {% endblock %}
 
 
 {% block scripts %}
     <style type="text/css">
-        .otree-title{ display:none }
-        .otree-body{margin-top: -100px}
+        .otree-body{margin-top: 0px}
+        .otree-body{padding-top: 0px}
+        .page-header {padding-top: 0px;padding-bottom: 0px}
+        .otree-title{font-size: 20px}
     </style>
 {% endblock %}
