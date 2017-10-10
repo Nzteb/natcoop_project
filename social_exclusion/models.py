@@ -77,9 +77,7 @@ class Group(BaseGroup):
         for p in self.get_players():
             p.payoff = (Constants.endowment - p.cont_first) + self.indiv_share_first
 
-    #TODO: by setting up designs and just clicking through the experiment i suddenly got an error here
-    #TODO: I have no clue yet why.. and this was after i tested it 100 times with even various people?
-    #TODO: this was on 09.10.2017
+
     def set_payoffs_second(self):
         self.total_cont_second = sum([p.cont_second for p in self.get_players() if p.plays_secondpg == True])
         if self.all_play == 'False':
@@ -206,16 +204,12 @@ class Player(BasePlayer):
         default=True)
 
 
-    #TODO: Check the comment
-    #we need blank=True here otherwise the player who is excluded cannot go on the same page where the other players make there second contribution
-    #despite the fact that the form is not displayed for him
-    #another workaround would to give him a different page in views or just skip the page totallly for him
+
     cont_second = models.CurrencyField(
         doc='The players contribution in the second public good game of the round.',
         verbose_name='What do you want to contribute to the project?',
         min=0,
-        max=Constants.endowment,
-        blank=True)
+        max=Constants.endowment)
 
     myvotes_inclusion = models.IntegerField(
         doc='The number of invitations the player got for the second public good game')

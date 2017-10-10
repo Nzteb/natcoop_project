@@ -2,14 +2,13 @@
 {% load staticfiles otree_tags %}
 
 {% block title %}
-    Last Page
+    Second Contribution
 {% endblock %}
 
 {% block content %}
-
     <div style=" border: solid; border-color: #f6f6f6; padding-left: 0px; width: 65%">
 
-        <table class="table" style="font-size: 12px">
+         <table class="table" style="font-size: 12px">
                 <tr>
                     <td>You are <b>{{ player.label }}</b></td>
                     <td>Current round is <b>Round {{ player.round_number }}</b></td>
@@ -21,16 +20,16 @@
             </table>
 
 
+        <div style=" margin-left: 15px">
 
-        <div style=" margin-left: 15px" >
 
-            This is the last page of this experiment.
             <br>
-            This page is only displayed if the actual round number == maximum round number
+            You are not playing the second game of this round. Please press Next and wait until the other players are finished with the second game.
             <br><br>
+
         </div>
 
-
+    <br>
     </div>
     <br>
     {% next_button %}

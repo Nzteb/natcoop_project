@@ -22,25 +22,17 @@
 
         <div style=" margin-left: 15px">
 
-            {% if player.plays_secondpg == True %}
-
-                <br>
-                This is the second game of this round.
-                <br>
-                {% if group.all_play == 'True' %}
-                    All five players play the second game.
-                {% else %}
-                    As <b>{{ group.excluded_player }}</b> was not included, there are four players in the second game.
-                    <br>
-                {% endif %}
-                <br><br>
-                {% formfield player.cont_second %}
-
+            <br>
+            This is the second game of this round.
+            <br>
+            {% if group.all_play == 'True' %}
+                All five players play the second game.
             {% else %}
+                As <b>{{ group.excluded_player }}</b> was not included, there are four players in the second game.
                 <br>
-                You are not playing the second game of this round. Please press Next and wait until the other players are finished with the second game.
-                <br><br>
             {% endif %}
+            <br><br>
+            {% formfield player.cont_second %}
 
         </div>
 

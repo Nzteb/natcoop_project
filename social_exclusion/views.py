@@ -91,10 +91,22 @@ class VoteResults(Page):
 
        return data
 
+class InsteadOfSecondContribution(Page):
+    def is_displayed(self):
+        if self.player.plays_secondpg == True:
+            return False
+        elif self.player.plays_secondpg == False:
+            return True
 
 class SecondContribution(Page):
     form_model = models.Player
     form_fields = ['cont_second']
+    def is_displayed(self):
+        if self.player.plays_secondpg == True:
+            return True
+        elif self.player.plays_secondpg == False:
+            return False
+
 
 
 class SecondWaitPage(WaitPage):
@@ -134,6 +146,7 @@ page_sequence = [
     Vote,
     VoteWaitPage,
     VoteResults,
+    InsteadOfSecondContribution,
     SecondContribution,
     SecondWaitPage,
     SecondResults,

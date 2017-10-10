@@ -21,7 +21,6 @@
 
 
         <div style=" margin-left: 15px" >
-            <br>
             {% if player.plays_secondpg == True %}
                 You contributed <b>{{ player.cont_second }}</b>.
                 <br>
@@ -35,9 +34,9 @@
 
 
             The following table displays the contributions of all players
-             <table class="table" style="width:65%">
+             <table class="table" style="width:75%">
                 <tr>
-                    <th>Player</th>
+                    <th>Player Label</th>
                     <th>Contribution</th>
                 </tr>
                 {% if group.excluded_player != 'Player A' %}
