@@ -33,6 +33,7 @@ class Subsession(BaseSubsession):
         #assign treatment
         for player in self.get_players():
             player.treatment = self.session.config['treatment']
+            player.city = self.session.config['city']
         #TODO: is group randomly the desired impementation?
         if self.round_number == 1:
             self.group_randomly()
@@ -191,6 +192,10 @@ class Player(BasePlayer):
     treatment = models.CharField(
         doc='Defines the treatment of the session. The treatment is the same for all players in one session.',
         choices=['inclusion', 'exclusion'])
+
+    city = models.CharField(
+        doc='Defines the city where the experiment took place ',
+        choices=['heidelberg', 'karlsruhe'])
 
 
     cont_first = models.CurrencyField(

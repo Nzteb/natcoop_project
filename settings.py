@@ -101,18 +101,21 @@ SESSION_CONFIG_DEFAULTS = {
 
 SESSION_CONFIGS = [
     {
-        'name': 'socialexclusion',
+        'name': 'socialinclusion',
         'display_name': 'social_inclusion_treatment',
         'num_demo_participants': 5,
         'app_sequence': ['social_exclusion'],
-        'treatment': 'inclusion'
+        'treatment': 'inclusion',
+        'city': 'heidelberg'
+
     },
     {
-        'name': 'socialinclusion',
+        'name': 'socialexclusion',
         'display_name': 'social_exclusion_treatment',
         'num_demo_participants': 5,
         'app_sequence': ['social_exclusion'],
-        'treatment': 'exclusion'
+        'treatment': 'exclusion',
+        'city': 'heidelberg'
     }
 
 
