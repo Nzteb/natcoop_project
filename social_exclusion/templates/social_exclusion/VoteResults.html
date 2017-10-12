@@ -37,30 +37,31 @@
                     <th> {% if player.treatment == 'inclusion' %}Invitations{% else %}Exclusions{% endif %}</th>
                     <th>Plays the second game</th>
                 </tr>
-                <tr>
-                    <td>Player A</td>
-                    <td>{{ PlayerA_votes }}</td>
-                    <td>{{ PlayerA_plays }}</td>
                 </tr>
                 <tr>
-                    <td>Player B</td>
-                    <td>{{ PlayerB_votes }}</td>
-                    <td>{{ PlayerB_plays }}</td>
+                    {% if player.label == 'Player A' %}<td><b>Player A</b></td>{% else %}<td>Player A</td>{% endif %}
+                    {% if player.label == 'Player A' %}<td><b>{{ PlayerA_votes }}</b></td> {% else %}<td>{{ PlayerA_votes }}</td>{% endif %}
+                    {% if player.label == 'Player A' %}<td><b>{{ PlayerA_plays }}</b></td> {% else %}<td>{{ PlayerA_plays }}</td>{% endif %}
                 </tr>
                 <tr>
-                    <td>Player C</td>
-                    <td>{{ PlayerC_votes }}</td>
-                    <td>{{ PlayerC_plays }}</td>
+                    {% if player.label == 'Player B' %}<td><b>Player B</b></td>{% else %}<td>Player B</td>{% endif %}
+                    {% if player.label == 'Player B' %}<td><b>{{ PlayerB_votes }}</b></td> {% else %}<td>{{ PlayerB_votes }}</td>{% endif %}
+                    {% if player.label == 'Player B' %}<td><b>{{ PlayerB_plays }}</b></td> {% else %}<td>{{ PlayerB_plays }}</td>{% endif %}
                 </tr>
                 <tr>
-                    <td>Player D</td>
-                    <td>{{ PlayerD_votes }}</td>
-                    <td>{{ PlayerD_plays }}</td>
+                    {% if player.label == 'Player C' %}<td><b>Player C</b></td>{% else %}<td>Player C</td>{% endif %}
+                    {% if player.label == 'Player C' %}<td><b>{{ PlayerC_votes }}</b></td> {% else %}<td>{{ PlayerC_votes }}</td>{% endif %}
+                    {% if player.label == 'Player C' %}<td><b>{{ PlayerC_plays }}</b></td> {% else %}<td>{{ PlayerC_plays }}</td>{% endif %}
                 </tr>
                 <tr>
-                    <td>Player E</td>
-                    <td>{{ PlayerE_votes }}</td>
-                    <td>{{ PlayerE_plays }}</td>
+                    {% if player.label == 'Player D' %}<td><b>Player D</b></td>{% else %}<td>Player D</td>{% endif %}
+                    {% if player.label == 'Player D' %}<td><b>{{ PlayerD_votes }}</b></td> {% else %}<td>{{ PlayerD_votes }}</td>{% endif %}
+                    {% if player.label == 'Player D' %}<td><b>{{ PlayerD_plays }}</b></td> {% else %}<td>{{ PlayerD_plays }}</td>{% endif %}
+                </tr>
+                <tr>
+                    {% if player.label == 'Player E' %}<td><b>Player E</b></td>{% else %}<td>Player E</td>{% endif %}
+                    {% if player.label == 'Player E' %}<td><b>{{ PlayerE_votes }}</b></td> {% else %}<td>{{ PlayerE_votes }}</td>{% endif %}
+                    {% if player.label == 'Player E' %}<td><b>{{ PlayerE_plays }}</b></td> {% else %}<td>{{ PlayerE_plays }}</td>{% endif %}
                 </tr>
             </table>
             <br>

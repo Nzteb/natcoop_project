@@ -93,6 +93,12 @@ class PlayerBot(Bot):
                 print('titanic sinks in 1 sec...')
 
 
+            #check the html on the vote results page
+            if self.player.treatment == 'inclusion':
+                assert 'Invitations' in self.html
+            else:
+                assert 'Exclusions' in self.html
+
             yield (views.VoteResults)
 
             if self.player.plays_secondpg == False:

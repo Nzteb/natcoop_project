@@ -27,11 +27,14 @@
             <br>
             {% if group.all_play == 'True' %}
                 All five players play the second game.
+                <br>
             {% else %}
                 As <b>{{ group.excluded_player }}</b> was not included, there are four players in the second game.
                 <br>
             {% endif %}
-            <br><br>
+            Your endowment is <b>{{Constants.endowment }}</b>.<br>
+            You can contribute every integer from 0 up to your endowment.
+            <br><br><br>
             {% formfield player.cont_second %}
 
         </div>

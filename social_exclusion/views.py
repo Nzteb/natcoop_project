@@ -29,6 +29,8 @@ class FirstResults(Page):
         for player in self.group.get_players():
             #remove whitespace from label so that it can be displayed in the template
             data[(player.label).replace(' ','')] = player.cont_first
+            #also display the profit for the game for a player
+            data['gameprofit'] = Constants.endowment - self.player.cont_first + self.group.indiv_share_first
         return data
 
 
@@ -59,6 +61,16 @@ class Vote(Page):
                     vote_count += 1
             if vote_count<3:
                 return 'Please only exclude one player'
+
+    def vars_for_template(self):
+        data = {}
+        # TODO: you wouldnt need the dic assignment because getplayers is ordered
+        # TODO: But I find this safer
+        # TODO: Note Vars for template cannot be tested, therefore this has to be safe and doublechecked
+        for player in self.group.get_players():
+            # remove whitespace from label so that it can be displayed in the template
+            data[(player.label).replace(' ', '')] = player.cont_first
+        return data
 
 
 class VoteWaitPage(WaitPage):
@@ -125,6 +137,9 @@ class SecondResults(Page):
             #regard all players here but in template only display the ones who actually played
             #remove whitespace from label so that it can be displayed in the template
             data[(player.label).replace(' ','')] = player.cont_second
+            #display player profit
+            if self.player.plays_secondpg == True:
+                data['gameprofit'] = Constants.endowment - self.player.cont_second + self.group.indiv_share_second
         return data
 
 
